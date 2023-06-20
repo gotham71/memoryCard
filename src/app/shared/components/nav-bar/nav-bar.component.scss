@@ -1,0 +1,22 @@
+nav {
+  background-color: #004481;
+}
+.logo {
+  width: 36px;
+}
+.navbar .navbar-nav .nav-link {
+  color: #ffffff;
+}
+.sm-icons {
+  flex-direction: row;
+}
+.sm-icons .nav-link {
+  padding-right: 1em;
+}
+
+.levelSelected {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+}

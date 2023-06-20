@@ -1,0 +1,51 @@
+<div class="container game-panels-container">
+  <div class="row my-5 user-data-container">
+    <div class="col-12 col-md-6 user-data">
+      <div class="card">
+        <div class="card-body text-color">
+          <h5 class="card-title">Usuario</h5>
+          <h4 class="card-text bold text-center text-uppercase">{{userName}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 user-data">
+      <app-scoring-panel></app-scoring-panel>
+    </div>
+    <div class="col-12 col-md-3 user-data">
+      <app-timer [countDownTo]="timer" (finishedTime)="hidePanels()"></app-timer>
+    </div>
+  </div>
+  <ng-container *ngIf="playing">
+    <div class="row">
+      <div class="col-12 text-center title mb-4">
+        <h2 *ngIf="!hideTime">Memoriza la posición de los números!</h2>
+        <h2 *ngIf="hideTime">Encuentra el número: {{winnerNumber}}</h2>
+      </div>
+      <div class="col-4" *ngFor="let panel of panels">
+        <app-game-panel [panel]=panel [hideTime]="hideTime" [success]="success" (tryOption)="checkTryOption($event)"></app-game-panel>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="initialState">
+    <div class="row">
+      <div class="col-12 text-center">
+        <button type="button" class="btn btn-corporative px-5 py-3" (click)="startGame()">Jugar!</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="continue">
+    <div class="row">
+      <div class="col-12 text-center">
+        <button type="button" class="btn btn-corporative px-5 py-3" (click)="continueGame()">Continuamos!</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="finished">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h3 class="mb-5 color title">Has acabado con {{scoring}} puntos.</h3>
+        <button type="button" class="btn btn-corporative px-5 py-3" (click)="startGame()">Otra partida ?</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
