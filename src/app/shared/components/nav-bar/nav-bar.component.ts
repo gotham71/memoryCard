@@ -26,4 +26,9 @@ export class NavBarComponent implements OnInit {
     this.level = value;
   }
 
+  logout() {
+    localStorage.removeItem('userName');
+    localStorage.removeItem('level');
+  }
+
 }

@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
     const name = localStorage.getItem('userName');
 
     if (!name) {
-      this.route.navigate(['/sign-in']);
+      this.route.navigate(['/auth/sign-in']);
       return false;
     }
     return true;
