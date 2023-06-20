@@ -20,9 +20,7 @@ export class GamePanelsContainerComponent implements OnInit {
   timer!: number;
   winnerNumber!: number;
 
-
   hideTime: boolean = false;
-  success: string = '';
 
   constructor(
     private gameService: GameService,
@@ -59,13 +57,12 @@ export class GamePanelsContainerComponent implements OnInit {
   }
 
   checkTryOption(event: any) {
-    this.success = this.gameService.checkTryIfCorrect(event) ? 'yes' : 'no';
+    this.gameService.checkTryIfCorrect(event);
   }
 
   startGame() {
     this.hideTime = false;
     this.gameService.startGame();
-
   }
 
   continueGame() {

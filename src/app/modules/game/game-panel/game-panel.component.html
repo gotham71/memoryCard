@@ -1,1 +1,1 @@
-<div class="panel" [class.clickable]="hideTime" [class.error]="success==='no'" [class.success]="success==='yes'" (click)="sendNumber(panel)" [innerHTML]="hideTime ? '?' : panel"></div>
+<div class="panel" [class.clickable]="hideTime" [class.error]="error" [class.success]="success" (click)="sendNumber(panel)" [innerHTML]="hideTime ? '?' : panel"></div>

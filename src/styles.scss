@@ -1,9 +1,15 @@
-$corporative-color: #004481;
+:root {
+  --corporative-color: #004481;
+}
 
 .bg-color {
-  background-color: $corporative-color;
+  background-color: --corporative-color;
 }
 
 .text-color {
-  color: $corporative-color;
+  color: --corporative-color;
+}
+
+.card {
+  border: 1px solid rgba(#004481, 0.25);
 }

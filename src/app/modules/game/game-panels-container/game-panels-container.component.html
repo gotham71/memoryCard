@@ -22,7 +22,7 @@
         <h2 *ngIf="hideTime">Encuentra el número: {{winnerNumber}}</h2>
       </div>
       <div class="col-4" *ngFor="let panel of panels">
-        <app-game-panel [panel]=panel [hideTime]="hideTime" [success]="success" (tryOption)="checkTryOption($event)"></app-game-panel>
+        <app-game-panel [panel]=panel [hideTime]="hideTime" [winnerNumber]="winnerNumber" (tryOption)="checkTryOption($event)"></app-game-panel>
       </div>
     </div>
   </ng-container>

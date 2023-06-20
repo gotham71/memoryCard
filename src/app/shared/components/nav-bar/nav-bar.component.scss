@@ -1,17 +1,16 @@
 nav {
-  background-color: #004481;
+  background-color: var(--corporative-color);
 }
-.logo {
-  width: 36px;
-}
+
 .navbar .navbar-nav .nav-link {
   color: #ffffff;
 }
+
 .sm-icons {
   flex-direction: row;
-}
-.sm-icons .nav-link {
-  padding-right: 1em;
+  &.nav-link {
+    padding-right: 1em;
+  }
 }
 
 .levelSelected {
@@ -19,4 +18,8 @@ nav {
   align-items: center;
   font-size: 18px;
   color: white;
+}
+
+.logo {
+  width: 36px;
 }

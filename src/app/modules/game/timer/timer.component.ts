@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-timer',
@@ -12,19 +13,24 @@ export class TimerComponent implements OnInit, OnChanges {
 
   currentTime = 0;
   interval: any;
+  timer = 0;
 
-  constructor() { }
+  constructor(
+    private gameService: GameService,
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.gameService.timer$.subscribe((value) => {
+      this.timer = value;
+      if(this.timer > 0) this.setCountdown(this.timer);
+    });
+  }
 
   ngOnChanges() {
-    console.log('on changes')
-    this.setCountdown(this.countDownTo);
+    //this.setCountdown(this.countDownTo);
   }
 
   setCountdown(seconds: number) {
-    console.log('setCountdown')
-
     this.currentTime = seconds;
     this.interval = setInterval(() => {
       if (this.currentTime > 0) {
