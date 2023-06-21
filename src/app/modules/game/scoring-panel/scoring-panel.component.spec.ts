@@ -25,23 +25,4 @@ describe('ScoringPanelComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-//TODO check testss
-  // it('should update the scoring value when the gameService scoring changes', () => {
-  //   const scoringSubject = new BehaviorSubject<number>(0);
-  //   spyOn(gameService, 'scoring$').and.returnValue(scoringSubject);
-
-  //   fixture.detectChanges(); // Manually trigger ngOnInit
-
-  //   expect(component.scoring).toBe(0);
-
-  //   scoringSubject.next(100);
-  //   fixture.detectChanges();
-
-  //   expect(component.scoring).toBe(100);
-
-  //   scoringSubject.next(200);
-  //   fixture.detectChanges();
-
-  //   expect(component.scoring).toBe(200);
-  // });
 });
