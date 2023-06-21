@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GameService } from 'src/app/services/game.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,26 +11,34 @@ export class NavBarComponent implements OnInit {
   @ViewChild('levels') levels!: ElementRef;
 
   level: string | null = ''; //TODO Create enum
+  playing!: boolean;
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private gameService: GameService,
+  ) {
+    this.gameService.playing$.subscribe((value) => {
+      this.playing = value;
+    });
+  }
 
   ngOnInit(): void {
-    this.level = localStorage.getItem('level');
+    this.level = this.userService.getLevel();
 
     if (this.level === null || this.level === '') { //TODO Check improvement
-      localStorage.setItem('level', 'Bajo');
+      this.userService.setLevel('Bajo');
       this.level = "Bajo";
     }
   }
 
-  checkLevel(value: string) {
-    localStorage.setItem('level', value);
+  changeLevel(value: string) {
+    this.userService.setLevel(value);
     this.level = value;
   }
 
   logout() {
-    localStorage.removeItem('userName');
-    localStorage.removeItem('level');
+    this.userService.removeUserName();
+    this.userService.removeLevel();
   }
 
 }

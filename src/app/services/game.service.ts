@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LEVEL_TIME_AND_POINTS_PRESETS, LevelTimeAndPointsPreset } from './presets';
 import { JsonPipe } from '@angular/common';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,12 +41,15 @@ export class GameService {
 
   currentScoring: number = 0;
   currentWinnerNumber: number = 0;
-
-  level = localStorage.getItem('level');
   currentPreset: any;
+  level!: string | null;
 
-  constructor() {
-    this.currentPreset = this.presets.find((preset) => preset.name === localStorage.getItem('level')); //TODO check
+  constructor(
+    private userService: UserService,
+    ) {
+    //this.level = this.userService.getLevel();
+    //this.currentPreset = this.presets.find((preset) => preset.name === this.level);
+    this.currentPreset = this.getCurrentPreset();
 
     this.scoring.subscribe(value => {
       this.currentScoring = value;
@@ -68,12 +72,16 @@ export class GameService {
     return numbersArray;
   }
 
+  getCurrentPreset() {
+    this.level = this.userService.getLevel();
+    return this.presets.find((preset) => preset.name === this.level);
+  }
+
   checkTryIfCorrect(tryOption: number):boolean {
     if (tryOption === this.currentWinnerNumber) {
       const currentScoring = this.currentScoring + this.currentPreset.points;
       this.scoring.next(currentScoring);
       this.continue.next(true);
-      //this.continueGame();
       return true;
     } else {
       setTimeout(() => {
@@ -85,6 +93,7 @@ export class GameService {
 
   startGame() {
     const currentPanels = this.generateNumbersCombination();
+    this.currentPreset = this.getCurrentPreset();
     this.panels.next(currentPanels);
     this.scoring.next(0);
     this.initialState.next(false);
@@ -97,6 +106,7 @@ export class GameService {
 
   continueGame() {
     const currentPanels = this.generateNumbersCombination();
+    this.currentPreset = this.getCurrentPreset();
     this.panels.next(currentPanels);
     this.initialState.next(false);
     this.continue.next(false);

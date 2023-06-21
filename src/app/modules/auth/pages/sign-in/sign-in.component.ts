@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,13 +13,14 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private route: Router,
+    private userSevice: UserService,
   ) { }
 
   ngOnInit(): void {
   }
 
   signIn(): void {
-    localStorage.setItem('userName', this.userName);
+    this.userSevice.setUserName(this.userName);
     this.route.navigate(['/', 'game']);
   }
 
