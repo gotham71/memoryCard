@@ -6,7 +6,7 @@ import { GameService } from 'src/app/services/game.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
 })
-export class TimerComponent implements OnInit, OnChanges {
+export class TimerComponent implements OnInit {
 
   @Input() countDownTo = 0;
   @Output() finishedTime: EventEmitter<boolean> = new EventEmitter();
@@ -26,10 +26,6 @@ export class TimerComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges() {
-    //this.setCountdown(this.countDownTo);
-  }
-
   setCountdown(seconds: number) {
     this.currentTime = seconds;
     this.interval = setInterval(() => {
@@ -43,3 +39,4 @@ export class TimerComponent implements OnInit, OnChanges {
   }
 
 }
+

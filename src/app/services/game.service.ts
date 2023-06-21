@@ -47,9 +47,8 @@ export class GameService {
   constructor(
     private userService: UserService,
     ) {
-    //this.level = this.userService.getLevel();
-    //this.currentPreset = this.presets.find((preset) => preset.name === this.level);
     this.currentPreset = this.getCurrentPreset();
+    console.log('this.currentPreset', this.currentPreset);
 
     this.scoring.subscribe(value => {
       this.currentScoring = value;
@@ -74,7 +73,8 @@ export class GameService {
 
   getCurrentPreset() {
     this.level = this.userService.getLevel();
-    return this.presets.find((preset) => preset.name === this.level);
+    const currentPresetFound =  this.presets.find((preset) => preset.name === this.level);
+    return currentPresetFound;
   }
 
   checkTryIfCorrect(tryOption: number):boolean {
@@ -82,6 +82,7 @@ export class GameService {
       const currentScoring = this.currentScoring + this.currentPreset.points;
       this.scoring.next(currentScoring);
       this.continue.next(true);
+      this.playing.next(false);
       return true;
     } else {
       setTimeout(() => {
