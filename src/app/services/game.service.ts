@@ -82,7 +82,9 @@ export class GameService {
       const currentScoring = this.currentScoring + this.currentPreset.points;
       this.scoring.next(currentScoring);
       this.continue.next(true);
-      this.playing.next(false);
+      setTimeout(() => {
+        this.playing.next(false);
+      }, 2000);
       return true;
     } else {
       setTimeout(() => {

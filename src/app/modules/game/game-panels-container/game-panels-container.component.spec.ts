@@ -3,6 +3,9 @@ import { GamePanelsContainerComponent } from './game-panels-container.component'
 import { GameService } from 'src/app/services/game.service';
 import { UserService } from 'src/app/services/user.service';
 import { BehaviorSubject } from 'rxjs';
+import { TimerComponent } from '../timer/timer.component';
+import { ScoringPanelComponent } from '../scoring-panel/scoring-panel.component';
+import { GamePanelComponent } from '../game-panel/game-panel.component';
 
 describe('GamePanelsContainerComponent', () => {
   let component: GamePanelsContainerComponent;
@@ -30,7 +33,7 @@ describe('GamePanelsContainerComponent', () => {
     };
 
     TestBed.configureTestingModule({
-      declarations: [GamePanelsContainerComponent],
+      declarations: [GamePanelsContainerComponent, TimerComponent, ScoringPanelComponent, GamePanelComponent],
       providers: [
         { provide: GameService, useValue: gameService },
         { provide: UserService, useValue: userService }
